@@ -13,9 +13,13 @@ describe Journey do
     it 'should respond to the #finish method' do
       expect(subject).to respond_to(:finish)
     end
+    it 'should set the exit station' do
+        expect {subject.finish(station)}.to change{subject.exit_station}.from(nil).to(station)
+    end
   end
 
   describe '#fare' do
+
 
   end
 
