@@ -23,6 +23,7 @@ describe Oystercard do
   end
 
   describe 'touch_in' do
+    #CHANGE 
     it "checks that the oyster card has been touched in" do
       oyster.touch_in(liverpool_street)
       expect(oyster.in_journey?).to eq true
@@ -32,7 +33,7 @@ describe Oystercard do
       cloyster = Oystercard.new(0)
       expect { cloyster.touch_in(liverpool_street) }.to raise_error "Minimum fare is £1"
     end
-
+    #CHANGE
     it 'remembers the station it touched in at' do
       oyster.touch_in(liverpool_street)
       expect(oyster.entry_station).to eq liverpool_street
@@ -40,16 +41,18 @@ describe Oystercard do
   end
 
   describe 'touch out' do
+    #CHANGE
     it "checks that the oyster card has been touched out" do
       oyster.touch_in(liverpool_street)
       oyster.touch_out(bow_road)
       expect(oyster.in_journey?).to eq false
     end
+
     it "checks that the balance has been deducted by the minimum fare" do
       oyster.touch_in(liverpool_street)
       expect { oyster.touch_out(bow_road, Oystercard::MINIMUM_FARE) }.to change{oyster.balance}.by -Oystercard::MINIMUM_FARE
     end
-
+    #CHANGE
     it 'forgets the entry station when it touches out' do
       oyster.touch_in(liverpool_street)
       oyster.touch_out(bow_road)
@@ -57,25 +60,17 @@ describe Oystercard do
     end
   end
 
-  describe 'in_journey?' do
-    it "checks whether the card is in use or not" do
-      oyster.touch_in(liverpool_street)
-      expect(oyster.in_journey?).to be_truthy
-    end
-
-    it "checks whether the card is in use or not" do
-      oyster.touch_out(bow_road)
-      expect(oyster.in_journey?).to be_falsey
-    end
-  end
-
+  #CHANGE
     it "checks that the history variable has data added to it" do
       subject.touch_in(liverpool_street)
       subject.touch_out(bow_road)
       expect(subject.history).to eq [{ liverpool_street => bow_road }]
 
     end
+  
+  describe "Journey history" do
     it "checks that the journey history hash is empty by default" do
       expect(subject.history).to eq []
     end
+  end
 end
