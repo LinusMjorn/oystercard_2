@@ -26,9 +26,4 @@ class Journey
     {@entry_station => @exit_station}
   end
 
-private
-  def in_journey?
-    @entry_station != nil ? true : false
-  end
-
 end
