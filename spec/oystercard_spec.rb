@@ -23,7 +23,7 @@ describe Oystercard do
   end
 
   describe 'touch_in' do
-    #CHANGE 
+    #CHANGE
     it "checks that the oyster card has been touched in" do
       oyster.touch_in(liverpool_street)
       expect(oyster.in_journey?).to eq true
@@ -67,7 +67,7 @@ describe Oystercard do
       expect(subject.history).to eq [{ liverpool_street => bow_road }]
 
     end
-  
+
   describe "Journey history" do
     it "checks that the journey history hash is empty by default" do
       expect(subject.history).to eq []
